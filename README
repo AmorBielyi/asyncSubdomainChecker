@@ -1,0 +1,16 @@
+ # Async Subdomain Checker Tool
+
+ Through "http:/localhost:8080/domain/status/[domainName]" route
+ it sends GET-HTTP request to underlying 3-rd part API "https://sonar.omnisint.io/subdomains/[root]",
+ in order to get response body which contains all subdomains of [domainName] domain",
+ and after that in asynchronous way using goroutines it calls http.Get(someSubdomain) on each subdomain and
+ checks its global availability (e.g whether we are able to reach the server by address or not)
+ and sends JSON as response to the same route.
+ JSON response is array of results.
+
+ Written in Go using GIN.
+
+ - usage: "http://localhost:8080/domain/status/dropbox.com"
+ - usage: "http://localhost:8080/domain/status/google.com.ua"
+ - usage: "http://localhost:8080/domain/status/readthedocs.org"
+ and so on..
